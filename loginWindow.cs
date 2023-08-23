@@ -8,7 +8,7 @@ namespace Water_District_Information_System
 {
     public partial class loginWindow : Form
     {
-        string sqlConnectionWDIS = ConfigurationManager.ConnectionStrings["sqlConnection"].ConnectionString;
+        string sqlConnection = ConfigurationManager.ConnectionStrings["sqlConnection"].ConnectionString;
 
         public static string first_name { get; set; }
         public static string last_name { get; set; }
@@ -29,13 +29,13 @@ namespace Water_District_Information_System
         public void logInUser()
         {
             string query = "SELECT [username],[first_name],[last_name],[position],[user_type] FROM [dbo].[user_details] WHERE username = @username AND password = @password";
-            using (SqlConnection sqlConnection = new SqlConnection(sqlConnectionWDIS))
+            using (SqlConnection sqlcon = new SqlConnection(sqlConnection))
             {
-                using (SqlCommand cmd = new SqlCommand(query, sqlConnection))
+                using (SqlCommand cmd = new SqlCommand(query, sqlcon))
                 {
                     cmd.Parameters.AddWithValue("@username", usernameField.Text);
                     cmd.Parameters.AddWithValue("@password", passwordField.Text);
-                    sqlConnection.Open();
+                    sqlcon.Open();
                     using (SqlDataAdapter adp = new SqlDataAdapter(cmd))
                     {
                         DataTable dtItem = new DataTable();
@@ -65,9 +65,14 @@ namespace Water_District_Information_System
                             MessageBox.Show("User does not Exist");
                         }
                     }
-                    sqlConnection.Close();
+                    sqlcon.Close();
                 }
             }
+        }
+
+        private void loginWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

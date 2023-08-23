@@ -8,5 +8,10 @@ namespace Water_District_Information_System
         {
             InitializeComponent();
         }
+
+        private void waterDistrictInformationSystem_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

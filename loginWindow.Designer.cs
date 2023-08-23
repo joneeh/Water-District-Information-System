@@ -112,6 +112,7 @@
             this.Name = "loginWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WDIS | Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.loginWindow_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
