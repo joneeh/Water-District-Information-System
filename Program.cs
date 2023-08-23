@@ -16,7 +16,7 @@ namespace Water_District_Information_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new waterDistrictInformationSystem());
+            Application.Run(new loginWindow());
         }
     }
 }
